@@ -1,0 +1,370 @@
+/*
+ * Stylesheet for the CiberLock website
+ *
+ * Este archivo define la apariencia general de la página, siguiendo una paleta
+ * basada en la identidad visual de la marca. Se utilizan variables CSS para
+ * facilitar la modificación de colores y tamaños y se aplica un diseño
+ * responsive con flexbox y grid para adaptarse a distintos tamaños de pantalla.
+ */
+
+:root {
+    --primary: #1F0537;      /* color principal (morado oscuro) */
+    --secondary: #00c79f;    /* color de acento (turquesa) */
+    --light: #f4f4f4;       /* color de fondo claro */
+    --text-dark: #222;      /* color de texto oscuro para contraste */
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    color: var(--text-dark);
+    line-height: 1.6;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+a {
+    text-decoration: none;
+}
+
+/* Container utility */
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Navigation */
+header {
+    background: var(--light);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 0;
+}
+
+.logo {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--primary);
+}
+.logo .accent {
+    color: var(--secondary);
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 2rem;
+}
+.nav-links li a {
+    color: var(--primary);
+    font-weight: 500;
+    transition: color .3s ease;
+}
+.nav-links li a:hover {
+    color: var(--secondary);
+}
+
+/* Hamburger menu (mobile) */
+.hamburger {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    width: 30px;
+    height: 25px;
+}
+.hamburger .bar {
+    width: 100%;
+    height: 3px;
+    background-color: var(--primary);
+    margin: 4px 0;
+    transition: all 0.3s ease;
+}
+.hamburger.active .bar:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+    background-color: #fff;
+}
+.hamburger.active .bar:nth-child(2) {
+    opacity: 0;
+}
+.hamburger.active .bar:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -5px);
+    background-color: #fff;
+}
+
+/* Hero section */
+.hero {
+    position: relative;
+    height: 80vh;
+    background: url('assets/hero.jpg') center/cover no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hero-overlay {
+    text-align: center;
+    color: #fff;
+    z-index: 1;
+}
+
+.hero::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(31, 5, 55, 0.75);
+    z-index: 0;
+}
+
+.hero-overlay h1 {
+    font-size: 3rem;
+    line-height: 1.2;
+    margin-bottom: 1rem;
+    font-weight: 700;
+}
+
+.hero-overlay p {
+    font-size: 1.25rem;
+    margin-bottom: 2rem;
+    font-weight: 400;
+}
+
+.btn {
+    display: inline-block;
+    background: var(--secondary);
+    color: #fff;
+    padding: 0.75rem 1.75rem;
+    border-radius: 30px;
+    font-weight: 600;
+    transition: background 0.3s ease;
+}
+.btn:hover {
+    background: #02c49f;
+}
+
+/* Sections */
+.about, .services, .news {
+    padding: 4rem 0;
+}
+
+.about h2,
+.services h2,
+.news h2,
+.contact h2 {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    color: var(--primary);
+}
+.about p {
+    max-width: 800px;
+    margin-bottom: 1rem;
+    color: #555;
+}
+
+/* Services */
+.service-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+.card {
+    background: #fff;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+.card i {
+    font-size: 2.5rem;
+    color: var(--secondary);
+    margin-bottom: 1rem;
+}
+.card h3 {
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
+    color: var(--primary);
+}
+.card p {
+    font-size: 0.9rem;
+    color: #555;
+}
+
+/* News */
+.news-items {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+.news-item {
+    background: #fff;
+    padding: 1.5rem;
+    border-left: 4px solid var(--secondary);
+    border-radius: 6px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+.news-item h3 {
+    font-size: 1.1rem;
+    margin-bottom: 0.75rem;
+    color: var(--primary);
+}
+.news-item p {
+    font-size: 0.9rem;
+    color: #555;
+}
+
+/* Contact */
+.contact {
+    background: var(--primary);
+    color: #fff;
+    padding: 4rem 0;
+}
+.contact-content {
+    text-align: center;
+}
+.contact h2 {
+    color: #fff; /* sobrescribe el color de los títulos dentro de la sección contacto */
+}
+.contact-content p {
+    margin-bottom: 1rem;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.contact-details p {
+    margin-bottom: 0.5rem;
+    font-size: 0.95rem;
+}
+.contact-details i {
+    color: var(--secondary);
+}
+.contact-form {
+    margin-top: 2rem;
+}
+.contact-form input,
+.contact-form textarea {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: none;
+    border-radius: 4px;
+    margin-bottom: 1rem;
+    font-family: inherit;
+    font-size: 0.9rem;
+}
+.contact-form input[type="submit"] {
+    background: var(--secondary);
+    color: #fff;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+.contact-form input[type="submit"]:hover {
+    background: #02c49f;
+}
+
+/* Footer */
+footer {
+    background: var(--primary);
+    color: #fff;
+    padding: 1.5rem 0;
+}
+/* Pie de página */
+.footer-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 0.5rem;
+}
+.footer-content p {
+    margin: 0;
+    font-size: 0.9rem;
+}
+.social-media {
+    display: flex;
+    gap: 0.75rem;
+    justify-content: center;
+}
+.social-media a {
+    color: #fff;
+    font-size: 1.4rem;
+    transition: color 0.3s ease;
+}
+.social-media a i {
+    color: var(--secondary);
+}
+.social-media a:hover i {
+    color: #fff;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .nav-links {
+        position: fixed;
+        top: 0;
+        right: 0;
+        height: 100vh;
+        width: 60%;
+        background: var(--primary);
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 2rem;
+        transform: translateX(100%);
+        transition: transform 0.3s ease-in-out;
+    }
+    .nav-links.active {
+        transform: translateX(0);
+    }
+    .nav-links li a {
+        color: #fff;
+        font-size: 1.1rem;
+    }
+    .hamburger {
+        display: flex;
+    }
+    .hero {
+        height: 70vh;
+    }
+    .hero-overlay h1 {
+        font-size: 2.5rem;
+    }
+    .hero-overlay p {
+        font-size: 1.1rem;
+    }
+    .footer-content {
+        flex-direction: column;
+        text-align: center;
+    }
+    .footer-content p {
+        margin-bottom: 1rem;
+    }
+}
